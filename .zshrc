@@ -72,7 +72,7 @@ function update_current_git_vars() {
   unset __CURRENT_GIT_STATUS
 
   local gitstatus="$__GIT_PROMPT_DIR/gitstatus.py"
-  _GIT_STATUS=`python ${gitstatus}`
+  _GIT_STATUS=`python3 ${gitstatus}`
   __CURRENT_GIT_STATUS=("${(@f)_GIT_STATUS}")
   GIT_BRANCH=$__CURRENT_GIT_STATUS[1]
   GIT_REMOTE=$__CURRENT_GIT_STATUS[2]
@@ -174,7 +174,7 @@ zstyle ':completion:*' users off
 
 [ -e $HOME/.zsh/notifyosd.zsh ] && [ -e /usr/bin/notify-send ] && . $HOME/.zsh/notifyosd.zsh
 
-PROMPT="%{➤%}  "
+PROMPT="➤ "
 if [ -n "$SSH_CLIENT" ] || [ -n "$SSH_TTY" ]; then
   RPROMPT='[%{%(!.$fg[magenta].$fg[green])%}%2~%{$reset_color%}$(git_super_status)]'
 else
