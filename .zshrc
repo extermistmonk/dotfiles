@@ -45,8 +45,6 @@ fi
 
 bindkey -v
 
-export PATH="$PATH:$HOME/bin"
-
 # hooks for git
 export __GIT_PROMPT_DIR=~/.zsh/
 add-zsh-hook chpwd chpwd_update_git_vars
@@ -136,6 +134,11 @@ export HISTSIZE=1000000
 export SAVEHIST=$HISTSIZE
 
 source /etc/profile
+
+export PATH="$PATH:$HOME/bin"
+
+# ruby gems
+export PATH="$PATH:$HOME/.gem/ruby/2.0.0/bin"
 
 precmd() {
   [[ $history[$[ HISTCMD -1 ]] == *(pacaur)* ]] && rehash
@@ -287,7 +290,7 @@ alias chgrp='chgrp --preserve-root'
 if [ -e /usr/bin/pacaur ]; then INSTALLER="pacaur"; else INSTALLER="pacman"; fi
 
 if [ -e /usr/bin/pacman ]; then
-  alias pac="/usr/bin/${INSTALLER} -S"  
+  alias pac="sudo /usr/bin/${INSTALLER} -S"  
   pacu() {
     sudo pacman -Syu
     pacaur -Sua
